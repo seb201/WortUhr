@@ -14,17 +14,21 @@ Ich wollte mir aus einem alten Android Tablet (Google Nexus 7) eine Wortuhr baue
 
 ## Was kann man einstellen?
 
-In der HTML-Datei können verschiedene Einstellungen vorgenommen werden:<br>
+| Eigenschaft                             | Wert                                   |
+|-----------------------------------------|---------------------------------------|
+| Abstand zur Oberkante                   | `height: 10%;`                        |
+| Hintergrundfarbe                        | `background-color: black;`            |
+| Schriftfarbe                            | `color: rgb(255, 255, 255);`          |
+| Schriftart                              | `font-family: Arial Narrow, sans-serif;` |
+| Schriftschnitt                          | `font-weight: light;`                 |
+| Abstand zwischen den Buchstaben in %    | `gap: 1%;`                            |
+| Schriftgröße in %                       | `font-size: 470%;`                    |
+| Zeichenabstand Horizontal               | `width: 100%;`                        |
+| Abdunkelung der nicht benötigten Wörter | `opacity: 0.2;`                       |
+| Zeilenabstand                           | `line-height: 1.25;`                  |
+| Abstand zwischen den Zeilen in %        | `--row-spacing: 8.6%;`                |
 
-Abstand zur Oberkante&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;```height: 10%;```<br>
-Hintergrundfarbe&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;```background-color: black;```<br>
-Schriftfarbe&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;```color: rgb(255, 255, 255);```<br>
-Schriftart&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;```font-family: Arial Narrow, sans-serif;```<br>
-Schriftschnitt&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;```font-weight: light;```<br>
-Abstand zwischen den Buchstaben in Prozent&emsp;```gap: 1%;```<br>
-Schriftgröße in Prozent&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;```font-size: 470%;```<br>
-Zeichenabstand Horizontal&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;```width: 100%;```<br>
-Abdunkelung der nicht benötigten Wörter&emsp;&emsp;&emsp;```opacity: 0.2;```<br><br>
+
 
 Falls die Textgröße nicht zur Bildschirmgröße passt, sollte als erstes im Browser die Zoomstufe angepasst werden. Dadurch kann das ändern im Programmcode evtl. gespart werden.<br>
 
