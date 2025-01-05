@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wort-Uhr</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 10%; /* Abstand zur Oberkante */
+            background-color: black;
+            color: rgb(255, 255, 255);
+            font-family: Arial Narrow, sans-serif;
+            font-weight: light; /* Leicht */
+            /*font-weight: bold; /* Fett */
+            overflow: hidden;
+        }
+
+        #clock {
+            display: grid;
+            grid-template-columns: repeat(11, 1fr);
+            gap: 1%; /* Abstand zwischen den Buchstaben in Prozent */
+            text-align: center;
+            font-size: 470%; /* Schriftgröße in Prozent */
+            width: 100%; /* Zeichenabstand Horizontal*/
+        }
+
+        .letter {
+            opacity: 0.2;
+            transition: opacity 0.5s ease;
+            line-height: 1.25; /* Standard-Zeilenabstand, kann angepasst werden */
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        /* Anpassbarer Zeilenabstand */
+        :root {
+            --row-spacing: 8.6%; /* Abstand zwischen den Zeilen in Prozent */
+        }
+
+        #clock {
+            grid-auto-rows: var(--row-spacing);
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+
+    <script>
+        const grid = [
+            "ESKISTLFÜNF",
+            "ZEHNZWANZIG",
+            "DREIVIERTEL",
+            "TGNACHVORJM",
+            "HALBQZWÖLFP",
+            "ZWEINSIEBEN",
+            "KDREIRHFÜNF",
+            "ELFNEUNVIER",
+            "WACHTZEHNRS",
+            "BSECHSFMUHR"
+        ];
+
+        const clockContainer = document.getElementById('clock');
+        const rows = [];
+
+        // Konfiguration für Debug-Zeit
+        const useDebugTime = false; // Ändere zu `false`, um die Browserzeit zu nutzen.
+        const debugHours = 11;
+        const debugMinutes = 23;
+
+        // Create grid of letters
+        grid.forEach((row, rowIndex) => {
+            row.split("").forEach((letter, colIndex) => {
+                const span = document.createElement('span');
+                span.className = 'letter';
+                span.dataset.row = rowIndex;
+                span.dataset.col = colIndex;
+                span.textContent = letter;
+                clockContainer.appendChild(span);
+
+                if (!rows[rowIndex]) rows[rowIndex] = [];
+                rows[rowIndex][colIndex] = span;
+            });
+        });
+
+
+        function updateClock() {
+            const now = useDebugTime
+            ? new Date(2023, 0, 1, debugHours, debugMinutes) // Nutze Debug-Zeit
+             : new Date();
+            let hours = now.getHours();
+            const minutes = now.getMinutes();
+
+            resetLetters();
+            highlightWord(0, 0, 1); // "ES"
+            highlightWord(0, 3, 5); // "IST"
+
+            // Adjust hours for 12-hour format
+            const currentHour = hours % 12 || 12;
+            const nextHour = (currentHour % 12) + 1;
+
+            // Spezialfall "EIN UHR"
+            if ((hours === 0 || hours === 12) && minutes >= 59) {
+                highlightWord(5, 2, 4); // "EIN"
+                highlightWord(9, 8, 10); // "UHR"
+            } else if ((hours === 1 || hours === 13) && minutes <= 3) {
+                highlightWord(5, 2, 4); // "EIN"
+                highlightWord(9, 8, 10); // "UHR"
+             } else if (minutes >= 0 && minutes <= 3) {
+            // Ganze Stunde
+                highlightHour(currentHour);
+                highlightWord(9, 8, 10); // "UHR"
+            } else if (minutes == 59) {
+            // Kurz vor der nächsten vollen Stunde
+                highlightHour(nextHour);
+                highlightWord(9, 8, 10); // "UHR"
+            } else if (minutes >= 4 && minutes <= 23) {
+            // Nach der vollen Stunde
+                handleMinutes(minutes, "NACH");
+                highlightHour(currentHour);
+            } else if (minutes >= 24 && minutes <= 58) {
+            // Vor der nächsten vollen Stunde
+            if (minutes >= 29 && minutes <= 33) {
+                highlightWord(4, 0, 3); // "HALB"
+            } else {
+                handleMinutes(minutes);
+            }
+            highlightHour(nextHour);
+            }
+        }
+
+
+        function handleMinutes(minutes) {
+            console.log(`Handling minutes: ${minutes}`);
+            if (minutes >= 4 && minutes <= 8) {
+                highlightWord(0, 7, 10); // "FÜNF"
+                highlightWord(3, 2, 5); // "NACH";
+            } else if (minutes >= 9 && minutes <= 13) {
+                highlightWord(1, 0, 3); // "ZEHN"
+                highlightWord(3, 2, 5); // "NACH";
+            } else if (minutes >= 14 && minutes <= 18) {
+                highlightWord(2, 4, 10); // "VIERTEL"
+                highlightWord(3, 2, 5); // "NACH";
+            } else if (minutes >= 19 && minutes <= 23) {
+                highlightWord(1, 4, 10); // "ZWANZIG"
+                highlightWord(3, 2, 5); // "NACH";
+            } else if (minutes >= 24 && minutes <= 28) {
+                highlightWord(0, 7, 10); // "FÜNF"
+                highlightWord(3, 6, 8); // "VOR";
+                highlightWord(4, 0, 3); // "HALB"
+            } else if (minutes >= 34 && minutes <= 38) {
+                highlightWord(0, 7, 10); // "FÜNF"
+                highlightWord(3, 2, 5); // "NACH";
+                highlightWord(4, 0, 3); // "HALB";
+            } else if (minutes >= 39 && minutes <= 43) {
+                highlightWord(1, 4, 10); // "ZWANZIG"
+                highlightWord(3, 6, 8); // "VOR";
+            } else if (minutes >= 44 && minutes <= 48) {
+                highlightWord(2, 4, 10); // "VIERTEL"
+                highlightWord(3, 6, 8); // "VOR";
+            } else if (minutes >= 49 && minutes <= 53) {
+                highlightWord(1, 0, 3); // "ZEHN"
+                highlightWord(3, 6, 8); // "VOR";
+            } else if (minutes >= 54 && minutes <= 58) {
+                highlightWord(0, 7, 10); // "FÜNF"
+                highlightWord(3, 6, 8); // "VOR";
+            }
+        }
+
+        function highlightHour(hour) {
+            const hourWords = [
+                [5, 2, 5],  // "EINS"
+                [5, 0, 3],  // "ZWEI"
+                [6, 1, 4],  // "DREI"
+                [7, 7, 10], // "VIER"
+                [6, 7, 10],  // "FÜNF"
+                [9, 1, 5],  // "SECHS"
+                [5, 5, 10], // "SIEBEN"
+                [8, 1, 4],  // "ACHT"
+                [7, 3, 6],  // "NEUN"
+                [8, 5, 8],  // "ZEHN"
+                [7, 0, 2],  // "ELF"
+                [4, 5, 9],  // "ZWÖLF/NULL"
+            ];
+
+            console.log(`Highlighting hour: ${hour}`);
+
+            /*if (hour == 11) {
+                highlightWord(7, 0, 2); // "ELF"
+            } else if (hour == 12) {
+                highlightWord(4, 5, 9); // "ZWÖLF"
+            } else {*/
+                highlightWord(...hourWords[(hour - 1) % 12]); // Alle anderen Stunden Zahlen
+           // }
+        }
+
+        function highlightWord(row, colStart, colEnd) {
+            console.log(`Highlighting word in row ${row}, cols ${colStart}-${colEnd}`);
+            for (let i = colStart; i <= colEnd; i++) {
+                if (rows[row] && rows[row][i]) {
+                    rows[row][i].classList.add('active');
+                } else {
+                    console.warn(`Invalid grid position: row ${row}, col ${i}`);
+                }
+            }
+        }
+
+        function resetLetters() {
+            console.log("Resetting all letters");
+            document.querySelectorAll('.letter').forEach(span => span.classList.remove('active'));
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
