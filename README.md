@@ -1,7 +1,7 @@
 # WortUhr
 
 ## Was ist eine Wort Uhr?
-Eine Wortuhr ist eine besondere Art von Uhr, die die Zeit nicht durch Ziffern oder Zeiger anzeigt, sondern in Form von Wörtern darstellt. Sie funktioniert typischerweise so, dass eine Matrix aus Buchstaben verwendet wird, und durch das Beleuchten bestimmter Buchstaben oder Wörter wird die aktuelle Uhrzeit in Klartext angezeigt. Ein Beispiel für eine Anzeige könnte sein:
+Eine Wortuhr ist eine besondere Art von Uhr, die die Zeit nicht durch Ziffern oder Zeiger anzeigt, sondern in Form von Wörtern darstellt. Sie funktioniert typischerweise so, dass eine Matrix aus Buchstaben verwendet wird, und durch das Beleuchten bestimmter Buchstaben oder Wörter wird die aktuelle Uhrzeit in Klartext angezeigt. Meine Matrix sieht so aus:
 
 <img width="800" alt="Screenshot" src="https://github.com/user-attachments/assets/fef14a0e-1e47-40e6-a330-9178eeebfdcb" />
 <br><br>
