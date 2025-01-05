@@ -34,6 +34,9 @@ Falls die Textgröße nicht zur Bildschirmgröße passt, sollte als erstes im Br
 
 Zu Debugzwecken lassen sich auch verschiedene Uhrzeiten testen:<br>
 
-Debug einstellen&emsp;&emsp;&emsp;&emsp;```const useDebugTime = true;```<br>
-Stunde einstellen&emsp;&emsp;&emsp;&emsp;```const debugHours = 11;```<br>
-Minute einstellen&emsp;&emsp;&emsp;&emsp;```const debugMinutes = 23;```<br>
+| Eigenschaft                             | Wert                                   |
+|-----------------------------------------|---------------------------------------|
+| Debug einstellen                        | `const useDebugTime = true;`          |
+| Stunde einstellen                       | `const debugHours = 11;`              |
+| Minute einstellen                       | `const debugMinutes = 23;`            |
+
