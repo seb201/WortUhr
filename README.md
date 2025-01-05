@@ -8,7 +8,7 @@ Eine Wortuhr ist eine besondere Art von Uhr, die die Zeit nicht durch Ziffern od
 Ich wollte mir aus einem alten Android Tablet (Google Nexus 7) eine Wortuhr bauen. Leider konnte ich keine passende App finden und so habe ich mir einfach selbst eine Wortuhr programmiert. Angezeigt wird die HTML-Datei über die App Fully Kiosk Browser, dieser kann das Tablet automatisch morgens einschalten und abends wieder ausschalten.<br><br>
 <img width="800" alt="Screenshot" src="https://github.com/user-attachments/assets/d1c903d6-03f8-4a14-82a1-7aa2b5a64361"<br><br>
 
-## Was macht die HTML-Datei?
+## Wie startet man die Wort Uhr?
 
 Öffnet man die HTML-Datei mit einem Webbrowser startet die Wort Uhr.
 
